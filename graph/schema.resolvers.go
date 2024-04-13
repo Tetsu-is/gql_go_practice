@@ -6,52 +6,27 @@ package graph
 
 import (
 	"context"
-	"my_gql_server/graph/model"
+	"fmt"
+
+	"github.com/saki-engineering/graphql-sample/graph/model"
+	"github.com/saki-engineering/graphql-sample/internal"
 )
 
 // CreateTodo is the resolver for the createTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	// panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
-	return &model.Todo{
-		ID:   "TODO-3",
-		Text: input.Text,
-		User: &model.User{
-			ID:   input.UserID,
-			Name: "name",
-		},
-	}, nil
+	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
 }
 
 // Todos is the resolver for the todos field.
 func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	// panic(fmt.Errorf("not implemented: Todos - todos"))
-	return []*model.Todo{
-		{
-			ID:   "TODO-1",
-			Text: "My Todo 1",
-			User: &model.User{
-				ID:   "USER-1",
-				Name: "hsaki",
-			},
-			Done: true,
-		},
-		{
-			ID:   "TODO-2",
-			Text: "My Todo 2",
-			User: &model.User{
-				ID:   "USER-1",
-				Name: "hsaki",
-			},
-			Done: false,
-		},
-	}, nil
+	panic(fmt.Errorf("not implemented: Todos - todos"))
 }
 
-// Mutation returns MutationResolver implementation.
-func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
+// Mutation returns internal.MutationResolver implementation.
+func (r *Resolver) Mutation() internal.MutationResolver { return &mutationResolver{r} }
 
-// Query returns QueryResolver implementation.
-func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
+// Query returns internal.QueryResolver implementation.
+func (r *Resolver) Query() internal.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
